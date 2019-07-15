@@ -37,7 +37,7 @@ public class Resume implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="resume_id")
-	public int getResumeId() {
+	public Integer getResumeId() {
 		return resumeId;
 	}
 

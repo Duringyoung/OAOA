@@ -31,7 +31,7 @@ public class Social implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "social_id")
-	public int getSocialId() {
+	public Integer getSocialId() {
 		return socialId;
 	}
 

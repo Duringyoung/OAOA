@@ -28,7 +28,7 @@ public class Permission implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "permission_id")
-	public int getPermissionId() {
+	public Integer getPermissionId() {
 		return permissionId;
 	}
 

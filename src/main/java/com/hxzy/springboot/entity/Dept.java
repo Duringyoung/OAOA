@@ -26,7 +26,7 @@ public class Dept implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "dept_id")
-	public int getDeptId() {
+	public Integer getDeptId() {
 		return deptId;
 	}
 

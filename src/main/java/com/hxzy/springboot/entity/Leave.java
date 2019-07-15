@@ -31,7 +31,7 @@ public class Leave implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="leave_id")
-	public int getLeaveId() {
+	public Integer getLeaveId() {
 		return leaveId;
 	}
 

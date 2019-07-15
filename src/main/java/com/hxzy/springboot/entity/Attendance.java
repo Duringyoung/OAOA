@@ -30,7 +30,7 @@ public class Attendance implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "attendance_id")
-	public int getAttendanceId() {
+	public Integer getAttendanceId() {
 		return attendanceId;
 	}
 

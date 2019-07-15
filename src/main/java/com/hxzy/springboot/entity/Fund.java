@@ -33,7 +33,7 @@ public class Fund implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="fund_id")
-	public int getFundId() {
+	public Integer getFundId() {
 		return fundId;
 	}
 

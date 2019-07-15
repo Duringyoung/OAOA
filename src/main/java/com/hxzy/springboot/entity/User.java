@@ -32,7 +32,7 @@ public class User implements Serializable {
 	private Integer regular;
 	// 用户名
 	private String username;
-	// 工作状态，1：在职；2：离职
+	// 工作状态，1：在职；0：离职
 	private Integer working;
 	// 关联考勤表
 	private List<Attendance> attendances;
