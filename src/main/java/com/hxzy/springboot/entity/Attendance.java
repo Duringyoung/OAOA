@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @category 考勤表
  * 
  */
-//修改xlw
+//修改xlwxxxx
 @Entity
 @Table(name = "t_attendance")
 public class Attendance implements Serializable {
