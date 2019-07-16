@@ -1,0 +1,126 @@
+@charset "utf-8";
+ol, ul, li {
+	list-style: none;
+	line-height: 22px;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------*/
+body {
+	width: 100%;
+	margin: 0 auto;
+	overflow-x: hidden;
+}
+
+span {
+	width: 150px;
+	height: 40px;
+}
+
+/*导航*/
+.nav-main {
+	border:solid 1px red;
+	position: fixed;
+	top: 40px;
+	z-index: 12;
+	height: 100%;
+	width: 150px;
+	color: #fff;
+	background:#00CCFF;
+}
+
+.nav-ul-li{
+	position:relative;
+	right: 25px;
+}
+
+.nav-main a {
+	color: #fff;
+}
+
+.nav-box {
+	position: relative;
+	perspective: 200px;
+	-webkit-perspective: 200px;
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	height: 100%;
+	z-index: 99;
+}
+
+
+.nav-ul li a span {
+	display: block;
+/* 	margin-top: 60px; */
+/* 	perspective:; */
+	position: relative;
+	z-index: 1;
+}
+
+.nav-slide {
+	position: fixed;
+	left: 100px;
+	top: 0;
+	width: 240px;
+	height: 100%;
+	background: #252829;
+	transform: rotateY(120deg);
+	-webkit-transform: rotateY(120deg);
+	-moz-transform: rotateY(120deg);
+	-o-transform: rotateY(120deg);
+	-ms-transform: rotateY(120deg);
+	z-index: 99;
+	visibility: hidden;
+	transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	transition: all .5s;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-o-transition: all .5s;
+	transition-timing-function: cubic-bezier(.08, .72, .71, .96);
+	-webkit-transition-timing-function: cubic-bezier(.08, .72, .71, .96);
+}
+
+.nav-slide.hover {
+	transform: rotateY(0deg);
+	-webkit-transform: rotateY(0deg);
+	-moz-transform: rotateY(0deg);
+	-o-transform: rotateY(0deg);
+	-ms-transform: rotateY(0deg);
+	z-index: 15;
+	visibility: visible;
+}
+
+/*界面显示*/
+
+.jm{
+	position: fixed;
+	top: 40px;
+	left: 150px;	
+}
+
+.jm-table{
+	display: block;
+}
+
+.jm-table th {
+	width: 100px;
+}
+
+/*界面显示*/
+.head{
+	background-color: red;
+	height: 40px;
+}
+
+

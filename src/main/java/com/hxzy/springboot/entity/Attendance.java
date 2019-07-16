@@ -11,6 +11,12 @@ import javax.persistence.*;
  * 
  */
 
+
+//修改1234567
+
+//修改xxx
+
+
 @Entity
 @Table(name = "t_attendance")
 public class Attendance implements Serializable {

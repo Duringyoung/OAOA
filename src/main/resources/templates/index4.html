@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>导航栏</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<div class="head">顶部预留</div>
+<div class="nav-main"  id="xinxi">
+<div class="nav">
+  <ul class="nav-ul">
+  	<li><a href="#" class="home"><span>首页</span></a></li>
+  	<li><a href="#" class="develop" ><span @click="a">信息管理</span></a></li>
+  	    <ul v-if="showa" class="nav-ul-li">
+    		<li><a href="#"><span>信息管理</span></a></li>
+    		<li><a href="#"><span>信息管理</span></a></li>
+    	</ul>
+  	<li><a href="#" class="wechat"><span @click="b">考勤管理</span></a></li>
+  		<ul v-if="showb" class="nav-ul-li">
+    		<li><a href="#"><span>信息管理</span></a></li>
+    		<li><a href="#"><span>信息管理</span></a></li>
+    	</ul>
+  	<li><a href="#" class="case"><span @click="c">福利管理</span></a></li>
+ 		<ul v-if="showc" class="nav-ul-li">
+    		<li><a href="#"><span>福利管理</span></a></li>
+    		<li><a href="#"><span>福利管理</span></a></li>
+    	</ul> 	
+  	<li><a href="#" class="news"><span @click="d">招聘管理</span></a></li>
+  		<ul v-if="showd" class="nav-ul-li">
+    		<li><a href="#" @click="e"><span>简历信息</span></a></li>
+    		<li><a href="#"><span>联系方式</span></a></li>
+    	</ul>
+  </ul>
+</div>
+</div>
+
+<div class="jm" id="zhujiemian">
+
+	<table class="jm-table" v-if="show" border="1px">
+		<tr >
+			<th>姓名</th>
+			<th>出生年月</th>
+			<th>学历</th>
+			<th>毕业院校</th>
+			<th>邮箱</th>
+			<th>练习方式</th>
+			<th>职业技能</th>
+			<th style="width: 200px">工作经历</th>
+			<th>工作年限</th>
+		</tr>
+		<tr th:each="user : ${users}" >
+			<td th:text="${user.id}"></td>
+			<td th:text="${user.username}"></td>
+			<td th:text="${user.password}"></td>
+			<td th:text="${user.quanxian}"></td>
+			<td>工作年限</td>
+			<td>工作年限</td>
+			<td>工作年限</td>
+			<td>工作年限</td>
+			<td>工作年限</td>
+		</tr>
+	</table>
+</div>
+
+<!-- <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script> -->
+<script type="text/javascript" src="js/vue-resource.js"></script>
+<script type="text/javascript" src="js/vue-router.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script>
+
+var vm01=new Vue({
+	el:'#zhujiemian',
+	data:{
+		show:true
+	}
+});
+
+var vm02=new Vue({
+	el:'#xinxi',
+	data:{
+		showa:false,
+		showb:false,
+		showc:false,
+		showd:false,
+		showe:false
+	},
+	methods:{
+		a:function(){
+			this.showa=!this.showa;
+		},
+		b:function(){
+			this.showb=!this.showb;
+		},
+		c:function(){
+			this.showc=!this.showc;
+		},
+		d:function(){
+			this.showd=!this.showd;
+		},
+		e:function(){
+			vm01.show=true;
+		}
+	}	
+});
+
+</script>
+
+
+</body></html>
