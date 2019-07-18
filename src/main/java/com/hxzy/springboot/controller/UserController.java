@@ -29,7 +29,7 @@ public class UserController {
 	public String login(@ModelAttribute User user, HttpSession session) {
 		User u1 = userService.getUser(user);
 		if (u1 != null) {
-			session.setAttribute("loginuser", user);
+			session.setAttribute("user1", user);
 			return "info";
 		}
 		return "login";

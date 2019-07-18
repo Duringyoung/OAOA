@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+</head>
+<body>
+	<form th:action="@{/loginuser}" th:object="${user}" method="post">
+		<input type="text" th:field="*{username}"></input> 
+		<input type="password" th:field="*{password}"></input>
+		<input type="submit" value="提交">
+	</form>
+<!-- 	<a th:href="@{reg}" th:text="注册"></a> -->
+</body>
+</html>
