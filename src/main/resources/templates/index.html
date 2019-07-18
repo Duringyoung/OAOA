@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>系统登录</title>
+<link href="css/login.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/demo.css" rel="stylesheet" type="text/css" media="all">
+<!-- 两种引用Vue的方式二选一 -->
+<script src="js/vue.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+<!-- 引用resource.js库 -->
+<script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/bundle.js"></script>
+</head>
+<body>
+	<div class="header">
+		导航栏预留000
+	</div>
+	<div class="banner">
+		<div class="login-aside">
+			<div id="o-box-up"></div>
+			<div id="o-box-down" style="table-layout: fixed;">
+				<div class="error-box"></div>
+				<form class="registerform" action="demo/ajax_post.jsp">
+					<div class="fm-item">
+						<label for="logonId" class="form-label">系统登陆：</label> <input
+							type="text" value="请输入账号" maxlength="100" id="username"
+							class="i-text" >
+						<div class="ui-form-explain"></div>
+					</div>
+
+					<div class="fm-item">
+						<label for="logonId" class="form-label">登陆密码：</label> <input
+							type="password" value="请输入密码" maxlength="100" id="password"
+							class="i-text" >
+						<div class="ui-form-explain"></div>
+					</div>
+
+					<div class="fm-item pos-r">
+						<label for="logonId" class="form-label">验证码</label> <input
+							type="text" maxlength="100" id="yzm" value="请输入验证码"
+							class="i-text yzm">
+						<div class="ui-form-explain">
+							<span class="yzm-img">验证码预留</span>
+						</div>
+					</div>
+					<div class="fm-item">
+						<input
+							type="submit" value="登录" tabindex="4" id="send-btn"
+							class="btn-login">
+						<div class="ui-form-explain"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="bd">
+			<ul style="position: relative; width: 1440px; height: 478px;">
+				<li
+					style="background: url(themes/theme-pic2.jpg)"><a
+					target="_blank" ></a></li>
+			</ul>
+		</div>
+
+		<div class="hd">
+			<ul>
+				<li class="">1</li>
+				<li class="on">2</li>
+			</ul>
+		</div>
+	</div>
+	<div class="banner-shadow">底部预留</div>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#yzm").focus(function(){				
+				$(this).val(""); 
+			});
+		});		
+		$(function(){
+			$("#yzm").blur(function(){				
+				$(this).val("请输入验证码"); 			 
+			});
+		});
+		
+		$(function(){
+			$("#username").focus(function(){				
+				$(this).val(""); 
+			});
+		});		
+		$(function(){
+			$("#username").blur(function(){				
+				$(this).val("请输入账号"); 			 
+			});
+		});
+		
+		$(function(){
+			$("#password").focus(function(){				
+				$(this).val(""); 
+			});
+		});		
+		$(function(){
+			$("#password").blur(function(){				
+				$(this).val("请输入验证码"); 			 
+			});
+		});
+	</script>	
+</body>
+</html>
