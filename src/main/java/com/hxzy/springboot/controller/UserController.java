@@ -1,14 +1,12 @@
 package com.hxzy.springboot.controller;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.hxzy.springboot.entity.User;
 import com.hxzy.springboot.service.UserService;
 
@@ -18,10 +16,10 @@ public class UserController {
 	private UserService userService;
 
 	// 从主页跳转登录页
-	@GetMapping("/")
+//	@GetMapping("/")
 	public String form(Model model) {
 		model.addAttribute("user", new User());
-		return "login";
+		return "index";
 	}
 
 	// 接收action请求

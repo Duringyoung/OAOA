@@ -26,6 +26,7 @@ public class Resume implements Serializable {
 	private String sex;
 	// 职业技能
 	private String skill;
+
 	// 专业
 	private String speciality;
 	// 电话
