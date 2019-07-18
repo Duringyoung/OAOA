@@ -23,7 +23,7 @@ public class User implements Serializable {
 	// 入职时间
 	private Timestamp hiredate;
 	// 真实名字
-	private String name;
+	private String realName;
 	// 密码
 	private String password;
 	// 电话
@@ -85,12 +85,12 @@ public class User implements Serializable {
 		this.hiredate = hiredate;
 	}
 
-	public String getName() {
-		return name;
+	public String getRealName() {
+		return realName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	public String getPassword() {

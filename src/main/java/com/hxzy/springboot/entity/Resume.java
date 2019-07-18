@@ -3,40 +3,48 @@ package com.hxzy.springboot.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * @author Ryo Liu
  * @category 简历表
  * 
  */
 @Entity
-@Table(name="t_resume")
+@Table(name = "t_resume")
 public class Resume implements Serializable {
 	private static final long serialVersionUID = 1L;
-	//ID
+	// ID
 	private Integer resumeId;
-	//年龄
+	// 年龄
 	private Integer age;
-	//学历
+	// 学历
 	private String education;
-	//工作经验
+	// 工作经验
 	private String experience;
-	//姓名
-	private String name;
-	//性别
+	// 姓名
+	private String resumeName;
+	// 性别
 	private String sex;
-	//职业技能
+	// 职业技能
 	private String skill;
-	//专业
+	// 专业
 	private String speciality;
+	// 电话
+	private String phone;
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public Resume() {
 	}
 
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="resume_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "resume_id")
 	public Integer getResumeId() {
 		return resumeId;
 	}
@@ -44,7 +52,6 @@ public class Resume implements Serializable {
 	public void setResumeId(Integer resumeId) {
 		this.resumeId = resumeId;
 	}
-
 
 	public int getAge() {
 		return age;
@@ -54,7 +61,6 @@ public class Resume implements Serializable {
 		this.age = age;
 	}
 
-
 	public String getEducation() {
 		return education;
 	}
@@ -62,7 +68,6 @@ public class Resume implements Serializable {
 	public void setEducation(String education) {
 		this.education = education;
 	}
-
 
 	public String getExperience() {
 		return experience;
@@ -72,15 +77,13 @@ public class Resume implements Serializable {
 		this.experience = experience;
 	}
 
-
-	public String getName() {
-		return name;
+	public String getResumeName() {
+		return resumeName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setResumeName(String resumeName) {
+		this.resumeName = resumeName;
 	}
-
 
 	public String getSex() {
 		return sex;
@@ -90,7 +93,6 @@ public class Resume implements Serializable {
 		this.sex = sex;
 	}
 
-
 	public String getSkill() {
 		return skill;
 	}
@@ -98,7 +100,6 @@ public class Resume implements Serializable {
 	public void setSkill(String skill) {
 		this.skill = skill;
 	}
-
 
 	public String getSpeciality() {
 		return speciality;
