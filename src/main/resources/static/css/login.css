@@ -218,9 +218,8 @@ label.form-label {
 .btn-login {
 	width: 242px;
 	height: 38px;
-	background: url(../images/login-btn.png) no-repeat;
 	border: none;
-	margin-top: 5px;
+	margin-top: 25px;
 }
 
 .h-light {
