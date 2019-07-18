@@ -28,11 +28,10 @@ public class Resume implements Serializable {
 	//职业技能
 	private String skill;
 	//专业
-	private String speciality;
+	private String speciality;	
 
 	public Resume() {
 	}
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -9,6 +9,7 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 <!-- 引用resource.js库 -->
 <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="js/bundle.js"></script>
 </head>
 <body>
@@ -16,7 +17,6 @@
 		导航栏预留000
 	</div>
 	<div class="banner">
-
 		<div class="login-aside">
 			<div id="o-box-up"></div>
 			<div id="o-box-down" style="table-layout: fixed;">
@@ -24,47 +24,40 @@
 				<form class="registerform" action="demo/ajax_post.jsp">
 					<div class="fm-item">
 						<label for="logonId" class="form-label">系统登陆：</label> <input
-							type="text" value="输入账号" maxlength="100" id="username"
+							type="text" value="请输入账号" maxlength="100" id="username"
 							class="i-text" >
 						<div class="ui-form-explain"></div>
 					</div>
 
 					<div class="fm-item">
 						<label for="logonId" class="form-label">登陆密码：</label> <input
-							type="password" value="输入密码" maxlength="100" id="password"
+							type="password" value="请输入密码" maxlength="100" id="password"
 							class="i-text" >
 						<div class="ui-form-explain"></div>
 					</div>
 
 					<div class="fm-item pos-r">
 						<label for="logonId" class="form-label">验证码</label> <input
-							type="text" value="输入验证码" maxlength="100" id="yzm"
-							class="i-text yzm" nullmsg="请输入验证码！">
+							type="text" maxlength="100" id="yzm" value="请输入验证码"
+							class="i-text yzm">
 						<div class="ui-form-explain">
 							<span class="yzm-img">验证码预留</span>
 						</div>
 					</div>
-
 					<div class="fm-item">
 						<input
 							type="submit" value="登录" tabindex="4" id="send-btn"
 							class="btn-login">
 						<div class="ui-form-explain"></div>
 					</div>
-
 				</form>
-
 			</div>
-
 		</div>
 
 		<div class="bd">
 			<ul style="position: relative; width: 1440px; height: 478px;">
 				<li
-					style="background: url(&quot;themes/theme-pic1.jpg&quot;) center 0px no-repeat rgb(204, 225, 243); position: absolute; width: 1440px; left: 0px; top: 0px; opacity: 0.898704;"><a
-					target="_blank" ></a></li>
-				<li
-					style="background: url(&quot;themes/theme-pic2.jpg&quot;) center 0px no-repeat rgb(188, 224, 255); position: absolute; width: 1440px; left: 0px; top: 0px; opacity: 0.105084;"><a
+					style="background: url(themes/theme-pic2.jpg)"><a
 					target="_blank" ></a></li>
 			</ul>
 		</div>
@@ -76,16 +69,41 @@
 			</ul>
 		</div>
 	</div>
+	<div class="banner-shadow">底部预留</div>
+	
 	<script type="text/javascript">
-		jQuery(".banner").slide({
-			titCell : ".hd ul",
-			mainCell : ".bd ul",
-			effect : "fold",
-			autoPlay : true,
-			autoPage : true,
-			trigger : "click"
+		$(function(){
+			$("#yzm").focus(function(){				
+				$(this).val(""); 
+			});
+		});		
+		$(function(){
+			$("#yzm").blur(function(){				
+				$(this).val("请输入验证码"); 			 
+			});
 		});
-	</script>
-	<div class="banner-shadow"></div>
+		
+		$(function(){
+			$("#username").focus(function(){				
+				$(this).val(""); 
+			});
+		});		
+		$(function(){
+			$("#username").blur(function(){				
+				$(this).val("请输入账号"); 			 
+			});
+		});
+		
+		$(function(){
+			$("#password").focus(function(){				
+				$(this).val(""); 
+			});
+		});		
+		$(function(){
+			$("#password").blur(function(){				
+				$(this).val("请输入验证码"); 			 
+			});
+		});
+	</script>	
 </body>
 </html>
