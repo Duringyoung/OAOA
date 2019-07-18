@@ -16,10 +16,10 @@ public class UserController {
 	private UserService userService;
 
 	// 从主页跳转登录页
-//	@GetMapping("/")
+	@GetMapping("/")
 	public String form(Model model) {
 		model.addAttribute("user", new User());
-		return "index";
+		return "left";
 	}
 
 	// 接收action请求
@@ -28,9 +28,9 @@ public class UserController {
 		User u1 = userService.getUser(user);
 		if (u1 != null) {
 			session.setAttribute("loginuser", user);
-			return "info";
+			return "left";
 		}
-		return "login";
+		return "index";
 	}
 	
 	//

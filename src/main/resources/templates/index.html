@@ -21,17 +21,17 @@
 			<div id="o-box-up"></div>
 			<div id="o-box-down" style="table-layout: fixed;">
 				<div class="error-box"></div>
-				<form class="registerform" action="demo/ajax_post.jsp">
+				<form class="registerform" action="/loginuser" method="post">
 					<div class="fm-item">
-						<label for="logonId" class="form-label">系统登陆：</label> <input
-							type="text" value="请输入账号" maxlength="100" id="username"
+						<label for="logonId" class="form-label">登陆账号：</label> <input
+							type="text" maxlength="100" name="username"
 							class="i-text" >
 						<div class="ui-form-explain"></div>
 					</div>
 
 					<div class="fm-item">
 						<label for="logonId" class="form-label">登陆密码：</label> <input
-							type="password" value="请输入密码" maxlength="100" id="password"
+							type="password" maxlength="100" name="password"
 							class="i-text" >
 						<div class="ui-form-explain"></div>
 					</div>
@@ -71,39 +71,39 @@
 	</div>
 	<div class="banner-shadow">底部预留</div>
 	
-	<script type="text/javascript">
-		$(function(){
-			$("#yzm").focus(function(){				
-				$(this).val(""); 
-			});
-		});		
-		$(function(){
-			$("#yzm").blur(function(){				
-				$(this).val("请输入验证码"); 			 
-			});
-		});
+<!-- 	<script type="text/javascript">
+// 		$(function(){
+// 			$("#yzm").focus(function(){				
+// 				$(this).val(""); 
+// 			});
+// 		});		
+// 		$(function(){
+// 			$("#yzm").blur(function(){				
+// 				$(this).val("请输入验证码"); 			 
+// 			});
+// 		});
 		
-		$(function(){
-			$("#username").focus(function(){				
-				$(this).val(""); 
-			});
-		});		
-		$(function(){
-			$("#username").blur(function(){				
-				$(this).val("请输入账号"); 			 
-			});
-		});
+// 		$(function(){
+// 			$("#username").focus(function(){				
+// 				$(this).val(""); 
+// 			});
+// 		});		
+// 		$(function(){
+// 			$("#username").blur(function(){				
+// 				$(this).val("请输入账号"); 			 
+// 			});
+// 		});
 		
-		$(function(){
-			$("#password").focus(function(){				
-				$(this).val(""); 
-			});
-		});		
-		$(function(){
-			$("#password").blur(function(){				
-				$(this).val("请输入验证码"); 			 
-			});
-		});
-	</script>	
+// 		$(function(){
+// 			$("#password").focus(function(){				
+// 				$(this).val(""); 
+// 			});
+// 		});		
+// 		$(function(){
+// 			$("#password").blur(function(){				
+// 				$(this).val("请输入验证码"); 			 
+// 			});
+// 		});
+</script>	 -->
 </body>
 </html>

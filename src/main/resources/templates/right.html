@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>管理系统</title>
@@ -8,19 +9,12 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".click").click(function() {
+		//显示
 			$(".tip").fadeIn(200);
 		});
-
+		//隐藏
 		$(".tiptop a").click(function() {
 			$(".tip").fadeOut(200);
-		});
-
-		$(".sure").click(function() {
-			$(".tip").fadeOut(100);
-		});
-
-		$(".cancel").click(function() {
-			$(".tip").fadeOut(100);
 		});
 	});
 </script>
@@ -34,26 +28,20 @@
 			<li><a href="#">员工信息</a></li>
 		</ul>
 	</div>
-
 	<div class="rightinfo">
-
 		<div class="tools">
-
 			<ul class="toolbar">
 				<li class="click"><span><img src="images/t01.png" /></span>添加</li>
 				<li class="click"><span><img src="images/t02.png" /></span>修改</li>
 				<li><span><img src="images/t03.png" /></span>删除</li>
 				<li><span><img src="images/t04.png" /></span>统计</li>
 			</ul>
-			<ul class="toolbar1">
-				<li><span><img src="images/t05.png" /></span>设置</li>
-			</ul>
 		</div>
 		<table class="tablelist">
 			<thead>
 				<tr>
 					<th><input name="" type="checkbox" value="" checked="checked" /></th>
-					<th>id<i class="sort"><img src="images/px.gif" /></i></th>
+					<th>id<i class="sort"><img src="images/px.gif"/></i></th>
 					<th>姓名</th>
 					<th>性别</th>
 					<th>年龄</th>
@@ -64,59 +52,17 @@
 					<th>操作</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
+			<tbody>			
+				<tr th:each="rs:${resumes}">
 					<td><input name="" type="checkbox" value="" /></td>
-					<td>id</td>
-					<td>姓名</td>
-					<td>性别</td>
-					<td>年龄</td>
-					<td>学历</td>
-					<td>专业</td>
-					<td>职业技能</td>
-					<td>联系方式</td>
-					<td><a href="#" class="tablelink">查看</a> <a href="#"
-						class="tablelink"> 删除</a></td>
-				</tr>
-
-				<tr>
-					<td><input name="" type="checkbox" value="" /></td>
-					<td>id</td>
-					<td>姓名</td>
-					<td>性别</td>
-					<td>年龄</td>
-					<td>学历</td>
-					<td>专业</td>
-					<td>职业技能</td>
-					<td>联系方式</td>
-					<td><a href="#" class="tablelink">查看</a> <a href="#"
-						class="tablelink"> 删除</a></td>
-				</tr>
-
-				<tr>
-					<td><input name="" type="checkbox" value="" /></td>
-					<td>id</td>
-					<td>姓名</td>
-					<td>性别</td>
-					<td>年龄</td>
-					<td>学历</td>
-					<td>专业</td>
-					<td>职业技能</td>
-					<td>联系方式</td>
-					<td><a href="#" class="tablelink">查看</a> <a href="#"
-						class="tablelink"> 删除</a></td>
-				</tr>
-
-				<tr>
-					<td><input name="" type="checkbox" value="" /></td>
-					<td>id</td>
-					<td>姓名</td>
-					<td>性别</td>
-					<td>年龄</td>
-					<td>学历</td>
-					<td>专业</td>
-					<td>职业技能</td>
-					<td>联系方式</td>
+					<td th:text="${rs.resume_id}"></td>
+					<td th:text="${rs.resume_name}"></td>
+					<td th:text="${rs.sex}">性别</td>
+					<td th:text="${rs.age}">年龄</td>
+					<td th:text="${rs.education}">学历</td>
+					<td th:text="${rs.speciality}">专业</td>
+					<td th:text="${rs.skill}">职业技能</td>
+					<td th:text="${rs.phone}">联系方式</td>
 					<td><a href="#" class="tablelink">查看</a> <a href="#"
 						class="tablelink"> 删除</a></td>
 				</tr>
@@ -146,28 +92,34 @@
 			<div class="tiptop">
 				<span>提示信息</span><a></a>
 			</div>
-
-			<div class="tipinfo">
-				<span><img src="images/ticon.png" /></span>
-				<div class="tipright">
-					<p>是否确认对信息的修改 ？</p>
-					<cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-				</div>
-			</div>
+<!-- 			<div class="tipinfo"> -->
+<!-- 			</div> -->
 			<div class="tipbtn">
-				<input name="" type="button" class="sure" value="确定" />&nbsp; <input
-					name="" type="button" class="cancel" value="取消" />
+				<form th:action="@{res/page}" method="get">
+					姓名：<input type="text" name="name"/><br/>
+					性别：<select name="sex">
+							<option value="男">男</option>
+							<option value="女">女</option>
+						 </select><br/>
+					年龄：<input type="text" name="age"/><br/>
+					学历：<select name="education">
+							<option value="高中">高中</option>
+							<option value="大专">大专</option>
+							<option value="本科">本科</option>
+						 </select><br/>
+					专业：<input type="text" name="speciality"/><br/>
+					职业技能：<input type="text" name="skill"/><br/>
+					联系方式：<input type="text" name="phone"/><br/>
+					<input type="submit" class="sure" value="提交" />			
+<!-- 					<input type="button" class="cancel" value="取消" /> -->
+				</form>				
 			</div>
 
 		</div>
-
-
-
-
 	</div>
 
-	<script type="text/javascript">
-		$('.tablelist tbody tr:odd').addClass('odd');
-	</script>
+<!-- 	<script type="text/javascript">
+// 		$('.tablelist tbody tr:odd').addClass('odd');
+</script> -->
 </body>
 </html>

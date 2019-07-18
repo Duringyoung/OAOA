@@ -1,6 +1,8 @@
 package com.hxzy.springboot.controller;
 
 import javax.annotation.Resource;
+
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,7 @@ import com.hxzy.springboot.service.ResumeService;
 
 @Controller
 public class ResumeController {
-	
+	 
 	private ResumeService resumeService;
 	
 	@Resource(name="resumeServiceImpl")
@@ -20,20 +22,25 @@ public class ResumeController {
 		this.resumeService = resumeService;
 	}
 	
-	@GetMapping("/")
-	public String index() {		
-		return "left"; 
-	}
-	
 	@GetMapping("right")
 	public String index1() {	
+		System.out.println("进来没");
 		return "right"; 
 	}	
 	
-	@PostMapping("add")
+	@PostMapping("res_add")
 	public String add(@ModelAttribute Resume resume,Model model) {
+		System.out.println("添加");
 		resumeService.addResume(resume);
-		return "index4";
+		return "right";
+	}
+	
+	@GetMapping("res_page")
+	public String page(Model model){
+		System.out.println("分页");
+		Page<Resume> resumes=resumeService.getPageList(0, 2);
+		model.addAttribute("resumes", resumes);
+		return "right";
 	}
 	
 	@PostMapping("delete")
@@ -41,5 +48,7 @@ public class ResumeController {
 		resumeService.deleteResumeById(id);
 		return "redirect:/index4";
 	}
+	
+	
 	
 }
