@@ -24,4 +24,5 @@ spring:
     cach: false #测试开发时没必要开启缓存
     mode: LEGACYHTML5 #解决html5标签不全的情况（必须导入nekohtml库文件）
     encoding: UTF-8
+
     

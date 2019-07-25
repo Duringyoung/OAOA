@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<title>OA系统</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+	<!-- 顶部 -->
+	<div class="head">
+		<div id="logoDiv">
+			<p id="logop">
+				<img id="logo" alt="OA系统" src="static/images/...<!-- 找一张LOGO图 -->"><span>OA系统</span>
+			</p>
+		</div>
+		<div id="loginuserinfo">
+			<p id="username">${sessionScope.user1.username}</p>
+			<p>
+				<!-- 				<a th:href="${/logout}">退出登录</a> -->
+			</p>
+		</div>
+	</div>
+	<div class="app">
+		<!-- 左边导航栏 -->
+		<div class="nav-main" id="xinxi">
+			<div class="nav">
+				<ul class="nav-ul">
+					<li><a href="#" class="home"><span>首页</span></a></li>
+					<li><a href="#" class="develop"><span @click="a">信息模块</span></a></li>
+					<ul v-if="showa" class="nav-ul-li">
+						<li class="current" data-id="yuangong">员工管理</li>
+						<li data-id="bumen">部门管理</li>
+					</ul>
+					<li><a href="#" class="wechat"><span @click="b">人事模块</span></a></li>
+					<ul v-if="showb" class="nav-ul-li">
+						<li data-id="fuli">福利管理</li>
+						<li data-id="zhaopin">招聘管理</li>
+						<li data-id="kaoqin">考勤管理</li>
+					</ul>
+					<li><a href="#" class="case"><span @click="c">权限模块</span></a></li>
+					<ul v-if="showc" class="nav-ul-li">
+						<li data-id="yonghu">用户管理</li>
+						<li data-id="juese">角色管理</li>
+						<li data-id="quanxian">权限管理</li>
+					</ul>
+				</ul>
+			</div>
+		</div>
+		<!-- 右边显示界面 -->
+		<div class="jm" id="zhujiemian"></div>
+	</div>
+</body>
+<!-- <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script> -->
+<script type="text/javascript" src="js/vue-resource.js"></script>
+<script type="text/javascript" src="js/vue-router.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script>
+	var vm02 = new Vue({
+		el : '#xinxi',
+		data : {
+			showa : false,
+			showb : false,
+			showc : false
+		},
+		methods : {
+			a : function() {
+				this.showa = !this.showa;
+			},
+			b : function() {
+				this.showb = !this.showb;
+			},
+			c : function() {
+				this.showc = !this.showc;
+			}
+		}
+	});
+	
+        $(function() {
+            $(".nav-ul").on("click", "li", function() {
+                var sId = $(this).data("id"); //获取data-id的值
+                window.location.hash = sId; //设置锚点
+                loadInner(sId);
+            });
+  
+            function loadInner(sId) {
+                var sId = window.location.hash;
+                var pathn, i;
+                switch(sId) {
+                    case "#yuangong":
+                        pathn = "user_center.html";
+                        i = 0;
+                        break;　　　　　　　
+                    case "#bumen":
+                        pathn = "user_account.html";
+                        i = 1;
+                        break;
+                    case "#fuli":
+                        pathn = "user_trade.html";
+                        i = 2;
+                        break;
+                    case "#zhaopin":
+                        pathn = "user_info.html";
+                        i = 3;
+                        break;　　　　　　
+                    default:
+                        pathn = "user_center.html";
+                        i = 0;
+                        break;
+                }
+           
+                $("#zhujiemian").load(pathn,function(response,status,xhr){
+                	　　if(xhr.status == 404){
+                	　　　　$(this).load("404.html");
+                	　　}
+                	　　if(xhr.status == 500){
+                	　　　　$(this).load("500.html");　　　
+                	　　}
+                	});
+                $(".nav-ul li").eq(i).addClass("current").siblings().removeClass("current"); //当前列表高亮
+            }
+            var sId = window.location.hash;
+            loadInner(sId);
+        });
+
+</script>
+</html>

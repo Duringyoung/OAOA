@@ -32,8 +32,6 @@ public class UserController {
 		}
 		return "index";
 	}
-	
-
 //	@GetMapping("/")
 //	public String form1(Model model) {
 //		model.addAttribute("user", new User());

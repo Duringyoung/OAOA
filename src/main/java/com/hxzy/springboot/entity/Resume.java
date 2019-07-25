@@ -22,21 +22,17 @@ public class Resume implements Serializable {
 	private String experience;
 	// 姓名
 	private String resumeName;
+
 	// 性别
 	private String sex;
 	// 职业技能
+
 	private String skill;
+
 	// 专业
 	private String speciality;
 	// 电话
 	private String phone;
-
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 	public Resume() {
 	}
@@ -76,10 +72,6 @@ public class Resume implements Serializable {
 		this.experience = experience;
 	}
 
-	public String getResumeName() {
-		return resumeName;
-	}
-
 	public void setResumeName(String resumeName) {
 		this.resumeName = resumeName;
 	}
@@ -106,6 +98,14 @@ public class Resume implements Serializable {
 
 	public void setSpeciality(String speciality) {
 		this.speciality = speciality;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }

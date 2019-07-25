@@ -105,12 +105,8 @@ public class ResumeController {
 	
 	@GetMapping("res_getResumes")
 	public String getResumeLists(@RequestParam String names, Model model){
-//		System.out.println(names);
-		
+//		System.out.println(names);		
 		List<Resume> list=resumeService.getResumeLists(names);
-		for(Resume a:list) {
-			System.out.println(a.getResumeName());
-		}
 		model.addAttribute("resumes", list);
 		return "resRight";
 	}
