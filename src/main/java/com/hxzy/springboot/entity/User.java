@@ -23,17 +23,17 @@ public class User implements Serializable {
 	// 入职时间
 	private Timestamp hiredate;
 	// 真实名字
-	private String name;
+	private String realName;
 	// 密码
 	private String password;
 	// 电话
 	private String phone;
-	// 1代表正式员工，0代表非正式员工
-	private Integer regular;
+	// 是否正式
+	private String regular;
 	// 用户名
 	private String username;
-	// 工作状态，1：在职；0：离职
-	private Integer working;
+	// 工作状态
+	private String working;
 	// 关联考勤表
 	private List<Attendance> attendances;
 	// 关联公积金表
@@ -85,12 +85,12 @@ public class User implements Serializable {
 		this.hiredate = hiredate;
 	}
 
-	public String getName() {
-		return name;
+	public String getRealName() {
+		return realName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	public String getPassword() {
@@ -109,12 +109,16 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 
-	public int getRegular() {
+	public String getRegular() {
 		return regular;
 	}
 
-	public void setRegular(Integer regular) {
+	public void setRegular(String regular) {
 		this.regular = regular;
+	}
+
+	public void setWorking(String working) {
+		this.working = working;
 	}
 
 	public String getUsername() {
@@ -125,12 +129,8 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
-	public int getWorking() {
+	public String getWorking() {
 		return working;
-	}
-
-	public void setWorking(Integer working) {
-		this.working = working;
 	}
 
 	// 一对多

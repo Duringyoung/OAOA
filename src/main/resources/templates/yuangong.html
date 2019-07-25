@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理系统</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="laydate/laydate.js"></script>
+
+
+
+<script type="text/javascript">
+<!-- 实现全选反选功能 -->
+	function close(){
+		document.getElementById("tip1").style.display = "none";
+		document.getElementById("tip-update").style.display = "none";
+	}
+	
+	function checkAll(checkall) {
+		arr = document.getElementsByName("info");
+		var userID="";
+		var temp = "";
+		if (checkall.checked == true) {
+			for (i = 0; i < arr.length; i++) {
+				arr[i].checked = true;
+				temp = arr[i].value;
+				userID = userID+","+temp;
+			}
+		} else {
+			for (i = 0; i < arr.length; i++) {
+				if ((arr[i]).checked == false) {
+					arr[i].checked = true;
+					temp = arr[i].value;
+					userID = userID+","+temp;
+				} else {
+					arr[i].checked = false;
+				}
+			}
+		}
+		document.getElementById("IDstring").value = userID.substring(1,userID.length);
+	}
+	
+	
+	
+	<!-- 判断日期不能增加空值 -->
+	function isDate(){
+        var v=$("#test1").val()
+         if(v!=null&&v.trim()!=""){
+             return true;
+         }else{
+             alert("日期不能为空")
+             return false;
+         }
+
+    }
+</script>
+<!-- 改成你的路径 -->
+<script>
+	lay('#version').html('-v' + laydate.v);
+
+	//执行一个laydate实例
+	laydate.render({
+		elem : '#test1', //指定元素
+		type : 'datetime',
+		istime : true,
+		format : 'yyyy-MM-dd HH:mm:ss',
+		max : 'new Date()'
+	});
+
+		
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		//增加框
+		$(".click_add").click(function() {
+			$(".tip1").fadeIn(200);
+		});
+
+		$(".tiptop a").click(function() {
+			$(".tip1").fadeOut(200);
+		});
+
+		$(".sure1").click(function() {
+			$(".tip1").fadeOut(100);
+		});
+
+		$(".cancel1").click(function() {
+			$(".tip1").fadeOut(100);
+		});
+
+		//更新框
+		$(".click_update").click(function() {
+			$(".tip2").fadeIn(200);
+		});
+
+		$(".tiptop a").click(function() {
+			$(".tip2").fadeOut(200);
+		});
+
+		
+		$(".sure2").click(function() {
+			$(".tip2").fadeOut(100);
+		});
+
+		$(".cancel2").click(function() {
+			$(".tip2").fadeOut(100);
+		});
+	});
+</script>
+
+<style>
+body {
+	padding: 20px;
+}
+
+.demo-input {
+	padding-left: 10px;
+	height: 38px;
+	min-width: 245px;
+	line-height: 38px;
+	border: 1px solid #e6e6e6;
+	background-color: #fff;
+	border-radius: 2px;
+}
+
+.demo-footer {
+	padding: 50px 0;
+	color: #999;
+	font-size: 14px;
+}
+
+.demo-footer a {
+	padding: 0 5px;
+	color: #01AAED;
+}
+</style>
+</head>
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">首页</a></li>
+			<li><a href="#">信息管理</a></li>
+			<li><a href="#">员工信息</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+<form action="yuangong/delMany">
+		<div class="tools">
+
+			<ul class="toolbar">
+				<li class="click_add"><input type="hidden" id="IDstring"
+					name="IDstring" /><span><img src="images/t01.png" /></span>添加</li>
+				<!-- 				<li class="click_update"><span><img src="images/t02.png" /></span>修改</li> -->
+				<li class="click_delete"><span><img src="images/t03.png" /><button type="submit" class="input-submit" onclick="return confirm('确定删除选择项？')">删除勾选项</button></span></li>
+				<li><span><img src="images/t04.png" /></span>统计</li>
+			</ul>
+			<ul class="toolbar1">
+				<li><span><img src="images/t05.png" /></span>设置</li>
+			</ul>
+		</div>
+</form>
+			<table class="tablelist">
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="checkall" name="checkall"
+							onclick="checkAll(checkall)" /></th>
+						<th>ID<i class="sort"><img src="images/px.gif" /></i></th>
+						<th>用户名</th>
+						<th>密码</th>
+						<th>真实姓名</th>
+						<th>年龄</th>
+						<th>电话</th>
+						<th>邮箱</th>
+						<th>部门名称</th>
+						<th>工作状态</th>
+						<th>是否正式员工</th>
+						<th>入职时间</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="ul:${userlist}">
+						<td><input name="info" type="checkbox"
+							th:value="${ul.userId}" /></td>
+						<td th:text=${ul.userId}></td>
+						<td th:text=${ul.username}></td>
+						<td th:text=${ul.password}></td>
+						<td th:text=${ul.realName}></td>
+						<td th:text=${ul.age}></td>
+						<td th:text=${ul.phone}></td>
+						<td th:text=${ul.email}></td>
+						<td th:text=${ul.dept.deptName}></td>
+						<td th:text=${ul.working}></td>
+						<td th:text=${ul.regular}></td>
+						<td th:text=${ul.hiredate}></td>
+						<td><a th:href="'yuangong/get/'+${ul.userId}" id="tablelink" class="click_update" target="up">修改</a>
+							<a th:href="'yuangong/del/'+${ul.userId}" id="tablelink" name="userId"
+								th:value="${ul.userId}" onclick="return confirm('确定删除选择项？')">删除</a></td>
+					</tr>
+				</tbody>
+			</table>
+		<div class="pagin">
+			<div class="message">
+				共<i class="blue">0</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页
+			</div>
+			<ul class="paginList">
+				<li class="paginItem"><a href="javascript:;"><span
+						class="pagepre"></span></a></li>
+				<li class="paginItem"><a href="javascript:;">1</a></li>
+				<li class="paginItem current"><a href="javascript:;">2</a></li>
+				<li class="paginItem"><a href="javascript:;">3</a></li>
+				<li class="paginItem"><a href="javascript:;">4</a></li>
+				<li class="paginItem"><a href="javascript:;">5</a></li>
+				<li class="paginItem more"><a href="javascript:;">...</a></li>
+				<li class="paginItem"><a href="javascript:;">10</a></li>
+				<li class="paginItem"><a href="javascript:;"><span
+						class="pagenxt"></span></a></li>
+			</ul>
+		</div>
+		<!-- 增加框开始 -->
+		<div class="tip1" id="tip1">
+			<div class="tiptop">
+				<span>提示信息</span><a></a>
+			</div>
+			<div class="tipinfo">
+				<!-- 				<span><img src="images/ticon.png" /></span> -->
+				<!-- 				<div class="tipright"> -->
+				<!-- 					<p>是否确认对信息的修改 ？</p> -->
+				<!-- 					<cite>如果是请点击确定按钮 ，否则请点取消。</cite> -->
+
+				<!-- 				</div> -->
+				<form action="yuangong/add">
+					<table class="t_yuangong" align="center" border="1px">
+						<tr>
+							<th>ID</th>
+							<td><input class="jiachang" type="text" name="userId"
+								size="50px"></td>
+						</tr>
+						<tr>
+							<th>用户名</th>
+							<td><input class="jiachang" type="text" name="username"
+								size="40px"></td>
+						</tr>
+						<tr>
+							<th>密码</th>
+							<td><input class="jiachang" type="text" name="password"
+								size="40px"></td>
+						</tr>
+						<tr>
+							<th>真实姓名</th>
+							<td><input class="jiachang" type="text" name="realName"
+								size="40px"></td>
+						</tr>
+						<tr>
+							<th>年龄</th>
+							<td><input class="jiachang" type="text" name="age"
+								size="40px"></td>
+						</tr>
+						<tr>
+							<th>电话</th>
+							<td><input class="jiachang" type="text" name="phone"></td>
+						</tr>
+						<tr>
+							<th>邮箱</th>
+							<td><input class="jiachang" type="text" name="email"></td>
+						</tr>
+						<tr>
+							<th>部门名称</th>
+							<td><select name="deptId">
+									<option value="1">研发部</option>
+									<option value="2">人事部</option>
+									<option value="3">生产部</option>
+									<option value="4">自动化部</option>
+									<option value="5">质量部</option></td>
+						</tr>
+						<tr>
+							<th>工作状态</th>
+							<td><input type="radio" value="在职" name="working"
+								checked="checked" />在职 <input type="radio" value="离职"
+								name="working" />离职</td>
+						</tr>
+						<tr>
+							<th>是否正式员工</th>
+							<td><input type="radio" value="正式" name="regular"
+								checked="checked" />正式 <input type="radio" value="非正式"
+								name="regular" />非正式</td>
+						</tr>
+						<tr>
+							<th>入职时间</th>
+							<td><input name="hiredate" type="text" class="demo-input"
+								placeholder="请选择日期" id="test1"></td>
+						</tr>
+						<tr class="tipbtn">
+							<td><input type="submit" class="sure1" value="确定"
+								onclick="isDate()" /></td>
+							<td><input type="button" class="cancel1" value="取消" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+		<!-- 增加框结束 -->
+
+		<!-- 更新框开始 -->
+<!-- 		<div class="tip2"> -->
+<!-- 			<div class="tiptop"> -->
+<!-- 				<span>提示信息</span><a></a> -->
+<!-- 			</div> -->
+<!-- 			<div class="tipinfo"> -->
+<!-- 				<form action="yuangong/update"> -->
+<!-- 					<table class="t_yuangong" align="center" border="1px"> -->
+<!-- 						<tr> -->
+<!-- 							<th>ID</th> -->
+<!-- 							<td><input class="jiachang" type="text" name="userId" -->
+<!-- 								size="50px"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>用户名</th> -->
+<!-- 							<td><input class="jiachang" type="text" name="username" -->
+<!-- 								size="40px"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>密码</th> -->
+<!-- 							<td><input class="jiachang" type="text" name="password" -->
+<!-- 								size="40px"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>真实姓名</th> -->
+<!-- 							<td><input class="jiachang" type="text" name="realName" -->
+<!-- 								size="40px"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>年龄</th> -->
+<!-- 							<td><input class="jiachang" type="text" name="age" -->
+<!-- 								size="40px"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>电话</th> -->
+<!-- 							<td><input class="jiachang" type="text" name="phone"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>邮箱</th> -->
+<!-- 							<td><input class="jiachang" type="text" name="email"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>部门名称</th> -->
+<!-- 							<td><select name="deptId"> -->
+<!-- 									<option value="1">研发部</option> -->
+<!-- 									<option value="2">人事部</option> -->
+<!-- 									<option value="3">生产部</option> -->
+<!-- 									<option value="4">自动化部</option> -->
+<!-- 									<option value="5">质量部</option></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>工作状态</th> -->
+<!-- 							<td><input type="radio" value="在职" name="working" -->
+<!-- 								checked="checked" />在职 <input type="radio" value="离职" -->
+<!-- 								name="working" />离职</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>是否正式员工</th> -->
+<!-- 							<td><input type="radio" value="正式" name="regular" -->
+<!-- 								checked="checked" />正式 <input type="radio" value="非正式" -->
+<!-- 								name="regular" />非正式</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>入职时间</th> -->
+<!-- 							<td><input name="hiredate" type="text" class="demo-input" -->
+<!-- 								placeholder="请选择日期" id="test1"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr class="tipbtn"> -->
+<!-- 							<td><input type="submit" class="sure2" value="确定" /></td> -->
+<!-- 							<td><input type="button" class="cancel2" value="取消" /></td> -->
+<!-- 						</tr> -->
+<!-- 					</table> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+ 		<!-- 更新框结束 --> 
+<!-- 	</div> -->
+
+<div class="tip2" id="tip-update">
+	
+	<iframe name = "up" style="width: 100%;  height:100%;"></iframe>
+</div>
+	
+</body>
+</html>

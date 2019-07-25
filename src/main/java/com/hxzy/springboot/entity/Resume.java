@@ -21,12 +21,11 @@ public class Resume implements Serializable {
 	// 工作经验
 	private String experience;
 	// 姓名
-	private String name;
+	private String resumeName;
 	// 性别
 	private String sex;
 	// 职业技能
 	private String skill;
-
 	// 专业
 	private String speciality;
 	// 电话
@@ -70,12 +69,12 @@ public class Resume implements Serializable {
 		this.experience = experience;
 	}
 
-	public String getName() {
-		return name;
+	public String getResumeName() {
+		return resumeName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setResumeName(String resumeName) {
+		this.resumeName = resumeName;
 	}
 
 	public String getSex() {

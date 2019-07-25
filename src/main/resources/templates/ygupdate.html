@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理系统</title>
+<link href="./css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="laydate/laydate.js"></script>
+<script>
+	lay('#version').html('-v' + laydate.v);
+
+	//执行一个laydate实例
+	laydate.render({
+		elem : '#test1', //指定元素
+		type : 'datetime',
+		istime : true,
+		format : 'yyyy-MM-dd HH:mm:ss',
+		max : 'new Date()'
+	});
+
+		
+</script>
+</head>
+<body>
+	<div class="tip2">
+		<div class="tiptop">
+			<span>提示信息</span><a></a>
+<!-- 			<form th:action="@{yuangong/update}"><input type="submit" value="tttt"/></form> -->
+		</div>
+		<div class="tipinfo">
+			<form th:action="@{/yuangong/update}">
+				<table class="t_yuangong" align="center" border="1px">
+					<tr>
+						<th>ID</th>
+						<td><input class="jiachang" type="text" name="userId"
+							size="50px"></td>
+					</tr>
+					<tr>
+						<th>用户名</th>
+						<td><input class="jiachang" type="text" name="username"
+							size="40px"></td>
+					</tr>
+					<tr>
+						<th>密码</th>
+						<td><input class="jiachang" type="text" name="password"
+							size="40px"></td>
+					</tr>
+					<tr>
+						<th>真实姓名</th>
+						<td><input class="jiachang" type="text" name="realName"
+							size="40px"></td>
+					</tr>
+					<tr>
+						<th>年龄</th>
+						<td><input class="jiachang" type="text" name="age"
+							size="40px"></td>
+					</tr>
+					<tr>
+						<th>电话</th>
+						<td><input class="jiachang" type="text" name="phone"></td>
+					</tr>
+					<tr>
+						<th>邮箱</th>
+						<td><input class="jiachang" type="text" name="email"></td>
+					</tr>
+					<tr>
+						<th>部门名称</th>
+						<td><select name="deptId">
+								<option value="1">研发部</option>
+								<option value="2">人事部</option>
+								<option value="3">生产部</option>
+								<option value="4">自动化部</option>
+								<option value="5">质量部</option></td>
+					</tr>
+					<tr>
+						<th>工作状态</th>
+						<td><input type="radio" value="在职" name="working"
+							checked="checked" />在职 <input type="radio" value="离职"
+							name="working" />离职</td>
+					</tr>
+					<tr>
+						<th>是否正式员工</th>
+						<td><input type="radio" value="正式" name="regular"
+							checked="checked" />正式 <input type="radio" value="非正式"
+							name="regular" />非正式</td>
+					</tr>
+					<tr>
+						<th>入职时间</th>
+						<td><input name="hiredate" type="text" class="demo-input"
+							placeholder="请选择日期" id="test1"></td>
+					</tr>
+					<tr class="tipbtn">
+						<td><input type="submit" class="sure2" value="确定" onclick="parent.window.close()"/></td>
+						<td><input type="button" class="cancel2" value="取消" onclick="parent.window.close()"/></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	
+</body>
+</html>

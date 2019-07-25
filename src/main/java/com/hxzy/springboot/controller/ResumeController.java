@@ -20,27 +20,27 @@ public class ResumeController {
 		this.resumeService = resumeService;
 	}
 	
-	@GetMapping("/")
-	public String index() {		
-		return "left"; 
-	}
-	
-	@GetMapping("right")
-	public String index1() {	
-		return "right"; 
-	}	
-	
-	
-	@PostMapping("add")
-	public String add(@ModelAttribute Resume resume,Model model) {
-		resumeService.addResume(resume);
-		return "index4";
-	}
-	
-	@PostMapping("delete")
-	public String delete(@PathVariable(name="id") Integer id) {
-		resumeService.deleteResumeById(id);
-		return "redirect:/index4";
-	}
+//	@GetMapping("/")
+//	public String index() {		
+//		return "left"; 
+//	}
+
+//	@GetMapping("right")
+//	public String index1() {	
+//		return "right"; 
+//	}	
+//	
+//	
+//	@PostMapping("add")
+//	public String add(@ModelAttribute Resume resume,Model model) {
+//		resumeService.addResume(resume);
+//		return "index4";
+//	}
+//	
+//	@PostMapping("delete")
+//	public String delete(@PathVariable(name="id") Integer id) {
+//		resumeService.deleteResumeById(id);
+//		return "redirect:/index4";
+//	}
 	
 }

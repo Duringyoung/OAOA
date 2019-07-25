@@ -1,5 +1,7 @@
 package com.hxzy.springboot.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +35,42 @@ public class UserServiceImpl implements UserService {
 	public Integer getCount() {
 		// TODO Auto-generated method stub
 		return (int) userDao.count();
+	}
+
+	@Override
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		userDao.save(user);
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return userDao.findAll();
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		userDao.deleteById(id);
+	}
+
+	@Override
+	public void UpdateUser(User user) {
+		// TODO Auto-generated method stub
+		userDao.save(user);
+	}
+
+	@Override
+	public User getUserById(int id) {
+		// TODO Auto-generated method stub
+		return userDao.getOne(id);
+	}
+
+	@Override
+	public void deleteMany(List<Integer> ids) {
+		// TODO Auto-generated method stub
+		userDao.deleteMany(ids);
 	}
 
 }
