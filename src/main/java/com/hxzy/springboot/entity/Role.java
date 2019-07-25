@@ -38,7 +38,6 @@ public class Role implements Serializable {
 		this.roleId = roleId;
 	}
 
-
 	@Column(name="role_name")
 	public String getRoleName() {
 		return roleName;
@@ -47,7 +46,6 @@ public class Role implements Serializable {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-
 
 	// 多对多
 	@ManyToMany

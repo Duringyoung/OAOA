@@ -5,8 +5,17 @@
 <title>OA系统</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript" src="js/jquery.js"></script>
-<script type="text/javascript">  
-$(function(){	
+<script type="text/javascript"> 
+function att(){
+	document.getElementById("res").style.display = "none";
+	document.getElementById("att").style.display = "inline";
+}
+
+function res(){
+	document.getElementById("att").style.display = "none";
+	document.getElementById("res").style.display = "inline";
+}
+$(function(){
 	//导航切换
 	$(".menuson li").click(function(){
 		$(".menuson li.active").removeClass("active")
@@ -21,6 +30,15 @@ $(function(){
 			$(this).next('ul').slideDown();
 		}
 	});
+	//子菜单切换
+	$('#resOnclick').click(function(){
+		document.getElementById("att").style.display = "none";
+		document.getElementById("res").style.display = "inline";
+	})
+	$('#attOnclick').click(function(){
+		document.getElementById("res").style.display = "none";
+		document.getElementById("att").style.display = "inline";
+	})
 })	
 </script>
 </head>
@@ -31,7 +49,7 @@ $(function(){
     <div class="title">
     <span><img src="images/leftico01.png" /></span>信息管理</div>
     	<ul class="menuson">
-        <li><cite></cite><a href="res_page" target="nl">员工信息</a><i></i></li>
+        <li><cite></cite><a>员工信息</a><i></i></li>
         </ul>    
     </dd>
     <dd>
@@ -39,9 +57,9 @@ $(function(){
     <span><img src="images/leftico02.png" /></span>人事管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="#">福利管理</a><i></i></li>
-        <li><cite></cite><a href="#">招聘管理</a><i></i></li>
-        <li><cite></cite><a href="#">考勤管理</a><i></i></li>
-        </ul>     
+        <li><cite></cite><a href="res_page" target="res" id="resOnclick">招聘管理</a><i></i></li>
+        <li><cite></cite><a href="att_page" target="att" id="attOnclick">考勤管理</a><i></i></li>
+    </ul>     
     </dd>
     <dd><div class="title"><span><img src="images/leftico03.png" /></span>权限管理</div>
     <ul class="menuson">
@@ -59,9 +77,15 @@ $(function(){
     </ul>  
     </dd>      
     </dl>
-    <div class="jm">
-    	<iframe name="nl">
-    		
+<!--内联 -->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->    
+    <div class="resjm" id="res">
+    	<iframe name="res">
+    	</iframe>
+    </div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div class="attjm" id="att">
+    	<iframe name="att">		
     	</iframe>
     </div>
 </body>

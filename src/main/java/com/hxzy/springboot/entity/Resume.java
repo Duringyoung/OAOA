@@ -20,7 +20,8 @@ public class Resume implements Serializable {
 	private String education;
 	// 工作经验
 	private String experience;
-
+	// 姓名
+	private String resumeName;
 	// 性别
 	private String sex;
 	// 职业技能
@@ -33,7 +34,6 @@ public class Resume implements Serializable {
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
@@ -76,6 +76,13 @@ public class Resume implements Serializable {
 		this.experience = experience;
 	}
 
+	public String getResumeName() {
+		return resumeName;
+	}
+
+	public void setResumeName(String resumeName) {
+		this.resumeName = resumeName;
+	}
 
 	public String getSex() {
 		return sex;

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理系统</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	function show() {
+		document.getElementById("tip").style.display = "inline";
+	}
+	function closes() {
+		document.getElementById("tip").style.display = "none";
+		document.getElementById("tip-update").style.display = "none";
+		window.location.reload();
+	}
+	function update() {
+		document.getElementById("tip-update").style.display = "inline";
+	}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	    function chk(){
+	        var all = document.getElementById("resid");
+	        var mychk = document.getElementsByName("resnames");
+	        var resumeId = "";
+			var temp = "";
+	        if(all.checked==true){            
+	            document.getElementById("span").innerHTML = '取消全选'
+	            if(mychk.length){
+	                for(var i=0;i<mychk.length;i++){
+	                    mychk[i].checked = true;	               
+	    				temp = mychk[i].value;
+	    				resumeId = resumeId + "," + temp;		    				
+	                }
+	                document.getElementById("tempString").value = resumeId.substring(1, resumeId.length);
+// 	                alert(bb.substring(1, resumeId.length));
+	            }           	            
+	            mychk.chcked=true;
+	        }else{
+	            document.getElementById("span").innerHTML = '全选'
+	            if(mychk.length){
+	                for(var i=0;i<mychk.length;i++){
+	                    mychk[i].checked = false;
+	                }
+	            }
+	        }
+	    }   
+</script>
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">首页</a></li>
+			<li><a href="#">人事管理</a></li>
+			<li><a href="#">招聘管理</a></li>
+		</ul>
+	</div>
+<!-- 	<div class="rightinfo"> -->
+		<div class="tools">
+		<form action="res_delete" method="get">
+		<input type="hidden" id="tempString" name="tempString" />
+			<ul class="toolbar">
+				<li class="click" onclick="show()"><span><img
+						src="images/t01.png" /></span>添加</li>
+					<li><span><img src="images/t03.png"/><button type="submit" value="删除所选" id="input-submit">删除所选</button></span></li>			
+<!-- 					<li class="click"><span><img src="images/t02.png" /></span>查询</li>							 -->
+			</ul>			
+		</form>
+		<form action="res_getResumes">
+			<span class="click-span"><img src="images/t02.png" /><button type="submit">查询</button></span>
+			
+			
+			<input id="input-query" type="text" placeholder="请输入需要查询的姓名" name="names"/>
+		</form>
+		</div>
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th><input type="checkbox" id="resid" name="resname"
+						style="display: inline;" onclick="chk()" /><span id="span">全选</span></th>
+					<th style="width: 35px">id<i class="sort"><img
+							src="images/px.gif" /></i></th>
+					<th style="width: 60px">姓名</th>
+					<th style="width: 45px">性别</th>
+					<th style="width: 40px">年龄</th>
+					<th style="width: 45px">学历</th>
+					<th style="width: 80px">专业</th>
+					<th style="width: 150px">职业技能</th>
+					<th style="width: 100px">联系方式</th>
+					<th style="width: 300px">工作经历</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			
+			<tbody  id="tbody">
+				<tr th:each="rs:${resumes}">
+					<td><input name="resnames" type="checkbox"
+						th:value="${rs.resumeId}" /></td>
+					<td th:text="${rs.resumeId}"></td>
+					<td th:text="${rs.resumeName}"></td>
+					<td th:text="${rs.sex}">性别</td>
+					<td th:text="${rs.age}">年龄</td>
+					<td th:text="${rs.education}">学历</td>
+					<td th:text="${rs.speciality}">专业</td>
+					<td th:text="${rs.skill}">职业技能</td>
+					<td th:text="${rs.phone}">联系方式</td>
+					<td th:text="${rs.experience}">工作经历</td>
+					<td>
+						<a th:href="'res_getResume_'+${rs.resumeId}" class="update"
+						target="a" onclick="update()">修改</a> <a
+						th:href="'res_delete_'+${rs.resumeId}" onclick="return confirm('是否确定删除')">删除</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="bb"></div>
+		<div class="pagin">
+			<!-- 			<div class="message"> -->
+			<!-- 				共<i class="blue">0</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页 -->
+			<!-- 			</div> -->
+			<div class="paginList">
+
+				<a th:href="@{res_page?(${0})}">首页</a> <a
+					th:href="@{res_page?(pageNum=${num-1<0?0:num-1})}">上一页</a> <a
+					th:href="@{res_page?(pageNum=${num}+1)}">下一页</a>
+				<a th:href="@{res_page?(pageNum=${max})}">末页</a>
+			</div>
+
+		</div>
+		<!--添加用户输入框 -->
+		<div class="tip" id="tip">
+			<div class="tiptop">
+				<span>提示信息</span><a onclick="closes()"></a>
+			</div>
+			<!-- 			<div class="tipinfo"> -->
+			<!-- 			</div> -->
+			<div class="tipbtn">
+				<form th:action="@{res_add}" method="get">
+					<ul>
+						<li><span>姓名：</span><input type="text" name="resumeName"
+							th:placeholder="${session.resumeName}" /></li>
+						<li><span>性别：</span> <select name="sex">
+								<option value="男">男</option>
+								<option value="女">女</option>
+						</select><br /></li>
+						<li><span>年龄：</span><input type="text" name="age" /></li>
+						<li><span>学历：</span> <select name="education">
+								<option value="高中">高中</option>
+								<option value="大专">大专</option>
+								<option value="本科">本科</option>
+						</select><br /></li>
+						<li><span>专业：</span><input type="text" name="speciality" /></li>
+						<li><span>职业技能：</span><input type="text" name="skill" /></li>
+						<li><span>工作经历：</span><input type="text" name="experience" /></li>
+						<li><span>联系方式：</span><input type="text" name="phone" /></li>
+					</ul>
+					<input type="submit" class="sure" value="提交" />
+				</form>
+			</div>
+		</div>
+		
+		
+
+		<div class="tip" id="tip-update">
+			<div class="tiptop">
+				<span>提示信息</span><a onclick="closes()"></a>
+			</div>
+			<iframe name="a" style="width: 100%; height: 100%;"> </iframe>
+		</div>
+</body>
+</html>

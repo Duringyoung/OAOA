@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理系统</title>
+<link href="./css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript">
+</script>
+<style type="">
+	span{
+	display: inline-block;
+	width: 60px;	
+}
+input{
+	border: 1px solid #ccc;
+	height: 25px;
+}
+
+select{
+	height: 25px;
+}
+div{
+	position: relative;
+	left: 130px;
+}
+
+.sure{
+	position: absolute;
+	top: 280px;
+	left:55px;
+}
+li{
+	height:30px;
+	line-height:180%;
+}
+
+</style>
+</head>
+<body style="overflow:-Scroll;overflow-x:hidden;">
+	<div>
+	<br/>
+		<form th:action="@{res_update}" method="get">	
+			<ul style="list-style-type:none">
+				<li><span>姓名：</span><input type="text" name="resumeName" th:value="${session.resume.resumeName}"/></li>
+				<li><span>性别：</span> <select name="sex" th:value="${session.resume.sex}">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select></li>
+				<li><span>年龄：</span><input type="text" name="age" th:value="${session.resume.age}"/></li>
+				<li><span>学历：</span> <select name="education" th:value="${session.resume.education}">
+						  	<option value="高中">高中</option>
+						 	<option value="大专">大专</option>
+						  	<option value="本科">本科</option>
+						  </select></li>
+				<li><span>专业：</span><input type="text" name="speciality" th:value="${session.resume.speciality}"/></li>
+				<li><span>职业技能：</span><input type="text" name="skill" th:value="${session.resume.skill}"/></li>
+				<li><span>工作经历：</span><input type="text" name="experience" th:value="${session.resume.experience}"/></li>
+				<li><span>联系方式：</span><input type="text" name="phone" th:value="${session.resume.phone}"/></li>
+				
+			</ul>
+				<input type="hidden" name="resumeId" th:value="${session.resume.resumeId}" />
+				<input type="submit" class="sure" value="确定修改" id="update" onclick="parent.window.closes()"/>
+		
+		</form>
+	</div>
+</body>
+</html>

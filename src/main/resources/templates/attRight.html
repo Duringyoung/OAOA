@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理系统</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	function show() {
+		document.getElementById("tip").style.display = "inline";
+	}
+	function closes() {
+		document.getElementById("tip").style.display = "none";
+		document.getElementById("tip-update").style.display = "none";
+		window.location.reload();
+	}
+	function update() {
+		document.getElementById("tip-update").style.display = "inline";
+	} 
+	
+</script>
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">首页</a></li>
+			<li><a href="#">人事管理</a></li>
+			<li><a href="#">考勤管理</a></li>
+		</ul>
+	</div>
+	<div class="rightinfo">
+		<div class="tools">
+		<input type="hidden" id="tempString" name="tempString" />
+			<ul class="toolbar">
+				<li class="click" onclick="show()"><span><img src="images/t01.png" /></span>上班打卡</li>
+				<li><span><img src="images/t03.png"/>下班打卡</span></li>			
+			</ul>			
+			<span class="click-att-span"><img src="images/t02.png" /><button type="submit">请假</button></span>
+		</div>
+		<table class="tablelist">
+			<thead>
+				<tr>
+					<th style="width: 35px">id<i class="sort"></th>
+					<th style="width: 35px">姓名</th>
+					<th style="width: 45px">部门</th>
+					<th style="width: 40px">职位</th>
+					<th style="width: 65px">日期</th>
+					<th style="width: 75px">上班打卡时间</th>
+					<th style="width: 75px">下班打卡时间</th>
+					<th style="width: 115px">打卡异常(正常、迟到、早退、旷工、漏打卡)</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="atts:${att}">
+					<td th:text="${atts.attendanceId}"></td>
+					<td th:text="${atts.User.realName}"></td>
+					<td th:text="${atts.User.Dept.deptName}"></td>
+					<td th:each="rol:${atts.User.roles}" ><span th:text="${rol.roleName}"></span></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="bb"></div>
+		<div class="pagin">
+			<!-- 			<div class="message"> -->
+			<!-- 				共<i class="blue">0</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页 -->
+			<!-- 			</div> -->
+			<div class="paginList">
+
+<!-- 				<a th:href="@{res_page?(${0})}">首页</a> <a -->
+<!-- 					th:href="@{res_page?(pageNum=${num-1<0?0:num-1})}">上一页</a> <a -->
+<!-- 					th:href="@{res_page?(pageNum=${num}+1)}">下一页</a> -->
+				<!--<a th:href="@{res_page?(${num}+1)==${max}?pageNum=(${num}+1):(pageNum=${max}-1)}">下一页</a> -->
+<!-- 				<a th:href="@{res_page?(pageNum=${max})}">末页</a> -->
+			</div>
+
+		</div>
+		
+		<!--添加用户输入框 -->
+		<div class="tip" id="tip">
+			<div class="tiptop">
+				<span>上下班打卡</span><a onclick="closes()"></a>
+			</div>
+			<!-- 			<div class="tipinfo"> -->
+			<!-- 			</div> -->
+			<div class="tipbtn-att">
+				<form method="get">
+					<ul>
+						<li><span>工号(id)：</span><input type="text" name="attendanceId"/></li>
+						<li><span>姓名：</span><input type="text" name="realName"/></li>
+					</ul>
+					<input type="submit" class="sure" value="提交" />
+				</form>
+			</div>
+		</div>
+
+</body>
+</html>
